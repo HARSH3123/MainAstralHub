@@ -4,7 +4,8 @@ local plr = Players.LocalPlayer
 
 local whitelist = {
     ["itsmeharsh3123"] = true,
-    ["FriendNameHere"] = true
+    ["Balbonbacon"] = true,
+    ["Balbonbacono"] = true
 }
 
 if not whitelist[plr.Name] then
