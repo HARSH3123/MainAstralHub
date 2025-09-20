@@ -33,534 +33,22 @@ end
 
 print(plr.Name .. " is whitelisted. Waiting for key...")
 
---// Key GUI System
-local gui = Instance.new("ScreenGui")
-gui.Parent = plr:WaitForChild("PlayerGui")
+--// Key GUI
+local ScreenGui = Instance.new("ScreenGui", plr:WaitForChild("PlayerGui"))
+local Frame = Instance.new("Frame", ScreenGui)
+Frame.Size = UDim2.new(0, 300, 0, 200)
+Frame.Position = UDim2.new(0.5, -150, 0.5, -100)
+Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 
-local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 300, 0, 150)
-frame.Position = UDim2.new(0.5, -150, 0.5, -75)
-frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-frame.Parent = gui
-
-local textbox = Instance.new("TextBox")
-textbox.Size = UDim2.new(0, 200, 0, 40)
-textbox.Position = UDim2.new(0.5, -100, 0.5, -20)
-textbox.PlaceholderText = "Enter Key"
-textbox.Text = ""
-textbox.TextScaled = true
-textbox.Parent = frame
-
-local button = Instance.new("TextButton")
-button.Size = UDim2.new(0, 100, 0, 40)
-button.Position = UDim2.new(0.5, -50, 0.5, 40)
-button.Text = "Submit"
-button.TextScaled = true
-button.Parent = frame
-
-local label = Instance.new("TextLabel")
-label.Size = UDim2.new(1, 0, 0, 30)
-label.Position = UDim2.new(0, 0, 0, -40)
-label.BackgroundTransparency = 1
-label.TextColor3 = Color3.fromRGB(255, 255, 255)
-label.Text = "Key Required"
-label.TextScaled = true
-label.Parent = frame
-
---=== GAME SCRIPTS ===--
-local rs = game:GetService("ReplicatedStorage")
-local remotes = rs:WaitForChild("RemoteFunctions")
-
--- helper to vote instantly
-local function voteDifficulty(diff)
-    local ok, err = pcall(function()
-        remotes.PlaceDifficultyVote:InvokeServer(diff)
-    end)
-    if ok then
-        warn("[Game] Voted difficulty instantly: " .. diff)
-    else
-        warn("[Error] Could not vote difficulty -> " .. tostring(err))
-    end
-end
-
-function load2xScript()
-    warn("[System] Loaded 2x Speed Script")
-
-    local difficulty = "dif_impossible"
-    local placements = {
-        {
-            time = 23, unit = "unit_lawnmower", slot = "1",
-            data = {Valid=true,PathIndex=3,Position=Vector3.new(-843.87384,62.1803055,-123.052032),
-                DistanceAlongPath=248.00653076171875,
-                CF=CFrame.new(-843.87384,62.1803055,-123.052032,-0,0,1,0,1,-0,-1,0,-0),
-                Rotation=180}
-        },
-        {
-            time = 45, unit = "unit_rafflesia", slot = "2",
-            data = {Valid=true,PathIndex=3,Position=Vector3.new(-842.381287,62.1803055,-162.012131),
-                DistanceAlongPath=180.5395965576172,
-                CF=CFrame.new(-842.381287,62.1803055,-162.012131,1,0,-0,-0,1,-0,-0,0,1),
-                Rotation=180}
-        },
-        {
-            time = 83, unit = "unit_rafflesia", slot = "2",
-            data = {Valid=true,PathIndex=3,Position=Vector3.new(-842.381287,62.1803055,-164.507538),
-                DistanceAlongPath=178.044189453125,
-                CF=CFrame.new(-842.381287,62.1803055,-164.507538,1,0,-0,-0,1,-0,-0,0,1),
-                Rotation=180}
-        },
-        {
-            time = 108, unit = "unit_rafflesia", slot = "2",
-            data = {Valid=true,PathIndex=2,Position=Vector3.new(-864.724426,62.1803055,-199.052032),
-                DistanceAlongPath=100.65655517578125,
-                CF=CFrame.new(-864.724426,62.1803055,-199.052032,-0,0,1,0,1,-0,-1,0,-0),
-                Rotation=180}
-        }
-    }
-
-    local function placeUnit(unitName, slot, data)
-        local hotbar = plr.PlayerGui.BackpackGui.Backpack.Hotbar
-        local slotBtn = hotbar:FindFirstChild(slot)
-        if slotBtn then
-            warn("[Placing] " .. unitName .. " from Slot " .. slot)
-            remotes.PlaceUnit:InvokeServer(unitName, data)
-        else
-            warn("[Error] Slot " .. slot .. " not found")
-        end
-    end
-
-    function startGame()
-        voteDifficulty(difficulty)
-        for _, p in ipairs(placements) do
-            task.delay(p.time, function()
-                placeUnit(p.unit, p.slot, p.data)
-            end)
-        end
-    end
-
-    task.spawn(function()
-        while true do
-            task.wait(9)
-            remotes.RestartGame:InvokeServer()
-            voteDifficulty(difficulty) -- ✅ revote on restart
-        end
-    end)
-
-    while true do
-        startGame()
-        task.wait(205.5)
-    end
-end
-
-function load3xScript()
-    warn("[System] Loaded 3x Speed Script")
-
-    local difficulty = "dif_impossible"
-    local placements = {
-        {
-            time = 19, unit = "unit_lawnmower", slot = "1",
-            data = {Valid=true,PathIndex=3,Position=Vector3.new(-843.87384,62.1803055,-123.052032),
-                DistanceAlongPath=248.00653076171875,
-                CF=CFrame.new(-843.87384,62.1803055,-123.052032,-0,0,1,0,1,-0,-1,0,-0),
-                Rotation=180}
-        },
-        {
-            time = 30, unit = "unit_rafflesia", slot = "2",
-            data = {Valid=true,PathIndex=3,Position=Vector3.new(-842.381287,62.1803055,-162.012131),
-                DistanceAlongPath=180.5395965576172,
-                CF=CFrame.new(-842.381287,62.1803055,-162.012131,1,0,-0,-0,1,-0,-0,0,1),
-                Rotation=180}
-        },
-        {
-            time = 55, unit = "unit_rafflesia", slot = "2",
-            data = {Valid=true,PathIndex=3,Position=Vector3.new(-842.381287,62.1803055,-164.507538),
-                DistanceAlongPath=178.044189453125,
-                CF=CFrame.new(-842.381287,62.1803055,-164.507538,1,0,-0,-0,1,-0,-0,0,1),
-                Rotation=180}
-        },
-        {
-            time = 75, unit = "unit_rafflesia", slot = "2",
-            data = {Valid=true,PathIndex=2,Position=Vector3.new(-864.724426,62.1803055,-199.052032),
-                DistanceAlongPath=100.65655517578125,
-                CF=CFrame.new(-864.724426,62.1803055,-199.052032,-0,0,1,0,1,-0,-1,0,-0),
-                Rotation=180}
-        }
-    }
-
-    local function placeUnit(unitName, slot, data)
-        local hotbar = plr.PlayerGui.BackpackGui.Backpack.Hotbar
-        local slotBtn = hotbar:FindFirstChild(slot)
-        if slotBtn then
-            warn("[Placing] " .. unitName .. " from Slot " .. slot)
-            remotes.PlaceUnit:InvokeServer(unitName, data)
-        else
-            warn("[Error] Slot " .. slot .. " not found")
-        end
-    end
-
-    function startGame()
-        voteDifficulty(difficulty)
-        for _, p in ipairs(placements) do
-            task.delay(p.time, function()
-                placeUnit(p.unit, p.slot, p.data)
-            end)
-        end
-    end
-
-    task.spawn(function()
-        while true do
-            task.wait(6)
-            remotes.RestartGame:InvokeServer()
-            voteDifficulty(difficulty) -- ✅ revote on restart
-        end
-    end)
-
-    while true do
-        startGame()
-        task.wait(137)
-    end
-end
-
---=== SPEED SELECTION MENU ===--
-button.MouseButton1Click:Connect(function()
-    if textbox.Text == "HELLROOT" then
-        gui:Destroy()
-        warn("[Key System] Correct key! Waiting for speed selection...")
-
-        local speedGui = Instance.new("ScreenGui")
-        speedGui.Parent = plr:WaitForChild("PlayerGui")
-
-        local sFrame = Instance.new("Frame")
-        sFrame.Size = UDim2.new(0, 300, 0, 200)
-        sFrame.Position = UDim2.new(0.5, -150, 0.5, -100)
-        sFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-        sFrame.Parent = speedGui
-
-        local title = Instance.new("TextLabel")
-        title.Size = UDim2.new(1, 0, 0, 40)
-        title.BackgroundTransparency = 1
-        title.TextColor3 = Color3.fromRGB(255, 255, 255)
-        title.Text = "Select Speed"
-        title.TextScaled = true
-        title.Parent = sFrame
-
-        local btn2x = Instance.new("TextButton")
-        btn2x.Size = UDim2.new(0, 120, 0, 50)
-        btn2x.Position = UDim2.new(0.5, -130, 0.5, -25)
-        btn2x.Text = "2x Speed"
-        btn2x.TextScaled = true
-        btn2x.Parent = sFrame
-
-        local btn3x = Instance.new("TextButton")
-        btn3x.Size = UDim2.new(0, 120, 0, 50)
-        btn3x.Position = UDim2.new(0.5, 10, 0.5, -25)
-        btn3x.Text = "3x Speed"
-        btn3x.TextScaled = true
-        btn3x.Parent = sFrame
-
-        btn2x.MouseButton1Click:Connect(function()
-            speedGui:Destroy()
-            load2xScript()
-        end)
-
-        btn3x.MouseButton1Click:Connect(function()
-            speedGui:Destroy()
-            load3xScript()
-        end)
-    else
-        textbox.Text = ""
-        label.Text = "Invalid Key!"
-        label.TextColor3 = Color3.fromRGB(255, 0, 0)
-    end
-end)textbox.TextScaled = true
-textbox.Parent = frame
-
--- Button
-local button = Instance.new("TextButton")
-button.Size = UDim2.new(0, 100, 0, 40)
-button.Position = UDim2.new(0.5, -50, 0.5, 40)
-button.Text = "Submit"
-button.TextScaled = true
-button.Parent = frame
-
--- Label
-local label = Instance.new("TextLabel")
-label.Size = UDim2.new(1, 0, 0, 30)
-label.Position = UDim2.new(0, 0, 0, -40)
-label.BackgroundTransparency = 1
-label.TextColor3 = Color3.fromRGB(255, 255, 255)
-label.Text = "Key Required"
-label.TextScaled = true
-label.Parent = frame
-
--- Function
-button.MouseButton1Click:Connect(function()
-    if textbox.Text == "HELLROOT" then
-        gui:Destroy()
-        warn("[Key System] Correct key! Waiting for speed selection...")
-
-        --// Speed Selection GUI
-        local speedGui = Instance.new("ScreenGui")
-        speedGui.Parent = plr:WaitForChild("PlayerGui")
-
-        local sFrame = Instance.new("Frame")
-        sFrame.Size = UDim2.new(0, 300, 0, 200)
-        sFrame.Position = UDim2.new(0.5, -150, 0.5, -100)
-        sFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
-        sFrame.Parent = speedGui
-
-        local title = Instance.new("TextLabel")
-        title.Size = UDim2.new(1, 0, 0, 40)
-        title.BackgroundTransparency = 1
-        title.TextColor3 = Color3.fromRGB(255, 255, 255)
-        title.Text = "Select Speed"
-        title.TextScaled = true
-        title.Parent = sFrame
-
-        local btn2x = Instance.new("TextButton")
-        btn2x.Size = UDim2.new(0, 120, 0, 50)
-        btn2x.Position = UDim2.new(0.5, -130, 0.5, -25)
-        btn2x.Text = "2x Speed"
-        btn2x.TextScaled = true
-        btn2x.Parent = sFrame
-
-        local btn3x = Instance.new("TextButton")
-        btn3x.Size = UDim2.new(0, 120, 0, 50)
-        btn3x.Position = UDim2.new(0.5, 10, 0.5, -25)
-        btn3x.Text = "3x Speed"
-        btn3x.TextScaled = true
-        btn3x.Parent = sFrame
-
-        --// Shared references
-        local rs = game:GetService("ReplicatedStorage")
-        local remotes = rs:WaitForChild("RemoteFunctions")
-
-        -- Function to run script
-        local function runScript(mode)
-            speedGui:Destroy()
-
-            if mode == "2x" then
-                warn("[Speed System] Running at 2x speed")
-
-                -- Difficulty vote
-                local difficulty = "dif_impossible"
-
-                -- Unit placements (2x speed, adjusted timings)
-                local placements = {
-                    {
-                        time = 23,
-                        unit = "unit_lawnmower",
-                        slot = "1",
-                        data = {
-                            ["Valid"] = true,
-                            ["PathIndex"] = 3,
-                            ["Position"] = Vector3.new(-843.87384, 62.1803055, -123.052032),
-                            ["DistanceAlongPath"] = 248.00653076171875,
-                            ["CF"] = CFrame.new(-843.87384, 62.1803055, -123.052032, -0, 0, 1, 0, 1, -0, -1, 0, -0),
-                            ["Rotation"] = 180
-                        }
-                    },
-                    {
-                        time = 45,
-                        unit = "unit_rafflesia",
-                        slot = "2",
-                        data = {
-                            ["Valid"] = true,
-                            ["PathIndex"] = 3,
-                            ["Position"] = Vector3.new(-842.381287, 62.1803055, -162.012131),
-                            ["DistanceAlongPath"] = 180.5395965576172,
-                            ["CF"] = CFrame.new(-842.381287, 62.1803055, -162.012131, 1, 0, -0, -0, 1, -0, -0, 0, 1),
-                            ["Rotation"] = 180
-                        }
-                    },
-                    {
-                        time = 83,
-                        unit = "unit_rafflesia",
-                        slot = "2",
-                        data = {
-                            ["Valid"] = true,
-                            ["PathIndex"] = 3,
-                            ["Position"] = Vector3.new(-842.381287, 62.1803055, -164.507538),
-                            ["DistanceAlongPath"] = 178.044189453125,
-                            ["CF"] = CFrame.new(-842.381287, 62.1803055, -164.507538, 1, 0, -0, -0, 1, -0, -0, 0, 1),
-                            ["Rotation"] = 180
-                        }
-                    },
-                    {
-                        time = 108,
-                        unit = "unit_rafflesia",
-                        slot = "2",
-                        data = {
-                            ["Valid"] = true,
-                            ["PathIndex"] = 2,
-                            ["Position"] = Vector3.new(-864.724426, 62.1803055, -199.052032),
-                            ["DistanceAlongPath"] = 100.65655517578125,
-                            ["CF"] = CFrame.new(-864.724426, 62.1803055, -199.052032, -0, 0, 1, 0, 1, -0, -1, 0, -0),
-                            ["Rotation"] = 180
-                        }
-                    }
-                }
-
-                local function placeUnit(unitName, slot, data)
-                    local hotbar = plr.PlayerGui.BackpackGui.Backpack.Hotbar
-                    local slotBtn = hotbar:FindFirstChild(slot)
-                    if slotBtn then
-                        warn("[Placing] " .. unitName .. " from Slot " .. slot .. " at " .. os.clock() .. "s")
-                        remotes.PlaceUnit:InvokeServer(unitName, data)
-                    else
-                        warn("[Error] Slot " .. slot .. " not found")
-                    end
-                end
-
-                function startGame()
-                    remotes.PlaceDifficultyVote:InvokeServer(difficulty)
-                    warn("[Game] Voted difficulty: " .. difficulty)
-
-                    task.delay(7.5, function()
-                        for _, p in ipairs(placements) do
-                            task.delay(p.time, function()
-                                placeUnit(p.unit, p.slot, p.data)
-                            end)
-                        end
-                    end)
-                end
-
-                task.spawn(function()
-                    while true do
-                        task.wait(9)
-                        remotes.RestartGame:InvokeServer()
-                    end
-                end)
-
-                while true do
-                    startGame()
-                    task.wait(205.5)
-                end
-
-            elseif mode == "3x" then
-                warn("[Speed System] Running at 3x speed")
-
-                -- Difficulty vote
-                local difficulty = "dif_impossible"
-
-                -- Unit placements (3x speed)
-                local placements = {
-                    {
-                        time = 19,
-                        unit = "unit_lawnmower",
-                        slot = "1",
-                        data = {
-                            ["Valid"] = true,
-                            ["PathIndex"] = 3,
-                            ["Position"] = Vector3.new(-843.87384, 62.1803055, -123.052032),
-                            ["DistanceAlongPath"] = 248.00653076171875,
-                            ["CF"] = CFrame.new(-843.87384, 62.1803055, -123.052032, -0, 0, 1, 0, 1, -0, -1, 0, -0),
-                            ["Rotation"] = 180
-                        }
-                    },
-                    {
-                        time = 30,
-                        unit = "unit_rafflesia",
-                        slot = "2",
-                        data = {
-                            ["Valid"] = true,
-                            ["PathIndex"] = 3,
-                            ["Position"] = Vector3.new(-842.381287, 62.1803055, -162.012131),
-                            ["DistanceAlongPath"] = 180.5395965576172,
-                            ["CF"] = CFrame.new(-842.381287, 62.1803055, -162.012131, 1, 0, -0, -0, 1, -0, -0, 0, 1),
-                            ["Rotation"] = 180
-                        }
-                    },
-                    {
-                        time = 55,
-                        unit = "unit_rafflesia",
-                        slot = "2",
-                        data = {
-                            ["Valid"] = true,
-                            ["PathIndex"] = 3,
-                            ["Position"] = Vector3.new(-842.381287, 62.1803055, -164.507538),
-                            ["DistanceAlongPath"] = 178.044189453125,
-                            ["CF"] = CFrame.new(-842.381287, 62.1803055, -164.507538, 1, 0, -0, -0, 1, -0, -0, 0, 1),
-                            ["Rotation"] = 180
-                        }
-                    },
-                    {
-                        time = 75,
-                        unit = "unit_rafflesia",
-                        slot = "2",
-                        data = {
-                            ["Valid"] = true,
-                            ["PathIndex"] = 2,
-                            ["Position"] = Vector3.new(-864.724426, 62.1803055, -199.052032),
-                            ["DistanceAlongPath"] = 100.65655517578125,
-                            ["CF"] = CFrame.new(-864.724426, 62.1803055, -199.052032, -0, 0, 1, 0, 1, -0, -1, 0, -0),
-                            ["Rotation"] = 180
-                        }
-                    }
-                }
-
-                local function placeUnit(unitName, slot, data)
-                    local hotbar = plr.PlayerGui.BackpackGui.Backpack.Hotbar
-                    local slotBtn = hotbar:FindFirstChild(slot)
-                    if slotBtn then
-                        warn("[Placing] " .. unitName .. " from Slot " .. slot)
-                        remotes.PlaceUnit:InvokeServer(unitName, data)
-                    else
-                        warn("[Error] Slot " .. slot .. " not found")
-                    end
-                end
-
-                function startGame()
-                    remotes.PlaceDifficultyVote:InvokeServer(difficulty)
-                    warn("[Game] Voted difficulty: " .. difficulty)
-
-                    task.delay(5, function()
-                        for _, p in ipairs(placements) do
-                            task.delay(p.time, function()
-                                placeUnit(p.unit, p.slot, p.data)
-                            end)
-                        end
-                    end)
-                end
-
-                task.spawn(function()
-                    while true do
-                        task.wait(6)
-                        remotes.RestartGame:InvokeServer()
-                    end
-                end)
-
-                while true do
-                    startGame()
-                    task.wait(137)
-                end
-            end
-        end
-
-        -- Button clicks
-        btn2x.MouseButton1Click:Connect(function()
-            runScript("2x")
-        end)
-
-        btn3x.MouseButton1Click:Connect(function()
-            runScript("3x")
-        end)
-
-    else
-        textbox.Text = ""
-        label.Text = "Invalid Key!"
-        label.TextColor3 = Color3.fromRGB(255, 0, 0)
-    end
-end)local Title = Instance.new("TextLabel")
+local Title = Instance.new("TextLabel", Frame)
 Title.Size = UDim2.new(1, 0, 0, 40)
 Title.BackgroundTransparency = 1
 Title.Text = "Enter Key"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.Font = Enum.Font.GothamBold
 Title.TextSize = 20
-Title.Parent = Frame
 
-local TextBox = Instance.new("TextBox")
+local TextBox = Instance.new("TextBox", Frame)
 TextBox.Size = UDim2.new(1, -20, 0, 40)
 TextBox.Position = UDim2.new(0, 10, 0, 50)
 TextBox.PlaceholderText = "Enter Key Here"
@@ -569,18 +57,16 @@ TextBox.Font = Enum.Font.Gotham
 TextBox.TextSize = 16
 TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
 TextBox.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
-TextBox.Parent = Frame
 
-local CheckBtn = Instance.new("TextButton")
+local CheckBtn = Instance.new("TextButton", Frame)
 CheckBtn.Size = UDim2.new(1, -20, 0, 40)
 CheckBtn.Position = UDim2.new(0, 10, 0, 100)
 CheckBtn.Text = "Check Key"
 CheckBtn.Font = Enum.Font.GothamBold
 CheckBtn.TextSize = 18
 CheckBtn.BackgroundColor3 = Color3.fromRGB(100, 200, 100)
-CheckBtn.Parent = Frame
 
-local Label = Instance.new("TextLabel")
+local Label = Instance.new("TextLabel", Frame)
 Label.Size = UDim2.new(1, -20, 0, 40)
 Label.Position = UDim2.new(0, 10, 0, 150)
 Label.BackgroundTransparency = 1
@@ -588,31 +74,163 @@ Label.Text = ""
 Label.Font = Enum.Font.GothamBold
 Label.TextSize = 16
 Label.TextColor3 = Color3.fromRGB(255, 255, 255)
-Label.Parent = Frame
 
---=== SPEED SELECTION MENU ===--
+--// Remotes
+local rs = game:GetService("ReplicatedStorage")
+local remotes = rs:WaitForChild("RemoteFunctions")
+
+-- Auto Skip (enable once at start)
+task.delay(2, function()
+    pcall(function()
+        remotes.ToggleAutoSkip:InvokeServer(true)
+        warn("[System] Auto Skip Enabled")
+    end)
+end)
+
+--=== GAME SCRIPTS ===--
+
+function load2xScript()
+    warn("[System] Loaded 2x Speed Script")
+    remotes.ChangeTickSpeed:InvokeServer(2)
+
+    local difficulty = "dif_impossible"
+    local placements = {
+        {
+            time = 29, unit = "unit_lawnmower", slot = "1",
+            data = {Valid=true,PathIndex=3,Position=Vector3.new(-843.87384,62.1803055,-123.052032),
+                DistanceAlongPath=248.0065,
+                CF=CFrame.new(-843.87384,62.1803055,-123.052032,-0,0,1,0,1,-0,-1,0,-0),
+                Rotation=180}
+        },
+        {
+            time = 47, unit = "unit_rafflesia", slot = "2",
+            data = {Valid=true,PathIndex=3,Position=Vector3.new(-842.381287,62.1803055,-162.012131),
+                DistanceAlongPath=180.53,
+                CF=CFrame.new(-842.381287,62.1803055,-162.012131,1,0,0,0,1,0,0,0,1),
+                Rotation=180}
+        },
+        {
+            time = 85, unit = "unit_rafflesia", slot = "2",
+            data = {Valid=true,PathIndex=3,Position=Vector3.new(-842.381287,62.1803055,-164.507538),
+                DistanceAlongPath=178.04,
+                CF=CFrame.new(-842.381287,62.1803055,-164.507538,1,0,0,0,1,0,0,0,1),
+                Rotation=180}
+        },
+        {
+            time = 110, unit = "unit_rafflesia", slot = "2",
+            data = {Valid=true,PathIndex=2,Position=Vector3.new(-864.724426,62.1803055,-199.052032),
+                DistanceAlongPath=100.65,
+                CF=CFrame.new(-864.724426,62.1803055,-199.052032,-0,0,1,0,1,0,-1,0,0),
+                Rotation=180}
+        }
+    }
+
+    local function placeUnit(unitName, slot, data)
+        remotes.PlaceUnit:InvokeServer(unitName, data)
+        warn("[Placing] "..unitName.." at "..os.clock())
+    end
+
+    local function startGame()
+        remotes.PlaceDifficultyVote:InvokeServer(difficulty)
+        for _, p in ipairs(placements) do
+            task.delay(p.time, function()
+                placeUnit(p.unit, p.slot, p.data)
+            end)
+        end
+    end
+
+    while true do
+        startGame()
+        task.wait(174.5)
+        remotes.RestartGame:InvokeServer()
+    end
+end
+
+function load3xScript()
+    warn("[System] Loaded 3x Speed Script")
+    remotes.ChangeTickSpeed:InvokeServer(3)
+
+    local difficulty = "dif_impossible"
+    local placements = {
+        {
+            time = 23, unit = "unit_lawnmower", slot = "1",
+            data = {Valid=true,PathIndex=3,Position=Vector3.new(-843.87384,62.1803055,-123.052032),
+                DistanceAlongPath=248.0065,
+                CF=CFrame.new(-843.87384,62.1803055,-123.052032,-0,0,1,0,1,-0,-1,0,-0),
+                Rotation=180}
+        },
+        {
+            time = 32, unit = "unit_rafflesia", slot = "2",
+            data = {Valid=true,PathIndex=3,Position=Vector3.new(-842.381287,62.1803055,-162.012131),
+                DistanceAlongPath=180.53,
+                CF=CFrame.new(-842.381287,62.1803055,-162.012131,1,0,0,0,1,0,0,0,1),
+                Rotation=180}
+        },
+        {
+            time = 57, unit = "unit_rafflesia", slot = "2",
+            data = {Valid=true,PathIndex=3,Position=Vector3.new(-842.381287,62.1803055,-164.507538),
+                DistanceAlongPath=178.04,
+                CF=CFrame.new(-842.381287,62.1803055,-164.507538,1,0,0,0,1,0,0,0,1),
+                Rotation=180}
+        },
+        {
+            time = 77, unit = "unit_rafflesia", slot = "2",
+            data = {Valid=true,PathIndex=2,Position=Vector3.new(-864.724426,62.1803055,-199.052032),
+                DistanceAlongPath=100.65,
+                CF=CFrame.new(-864.724426,62.1803055,-199.052032,-0,0,1,0,1,0,-1,0,0),
+                Rotation=180}
+        }
+    }
+
+    local function placeUnit(unitName, slot, data)
+        remotes.PlaceUnit:InvokeServer(unitName, data)
+        warn("[Placing] "..unitName.." at "..os.clock())
+    end
+
+    local function startGame()
+        remotes.PlaceDifficultyVote:InvokeServer(difficulty)
+        for _, p in ipairs(placements) do
+            task.delay(p.time, function()
+                placeUnit(p.unit, p.slot, p.data)
+            end)
+        end
+    end
+
+    while true do
+        startGame()
+        task.wait(120)
+        remotes.RestartGame:InvokeServer()
+    end
+end
+
+--=== SPEED MENU ===--
 local function showSpeedMenu()
     Title.Text = "Select Speed"
     TextBox.Visible = false
     CheckBtn.Visible = false
 
-    local btn2x = Instance.new("TextButton")
+    -- Reminder label directly below title
+    local AutoSkipMsg = Instance.new("TextLabel", Frame)
+    AutoSkipMsg.Size = UDim2.new(1, -20, 0, 30)
+    AutoSkipMsg.Position = UDim2.new(0, 10, 0, 40)
+    AutoSkipMsg.BackgroundTransparency = 1
+    AutoSkipMsg.Text = "Pls Enable Auto Skip On Manually"
+    AutoSkipMsg.Font = Enum.Font.GothamBold
+    AutoSkipMsg.TextSize = 14
+    AutoSkipMsg.TextColor3 = Color3.fromRGB(255, 200, 0)
+    AutoSkipMsg.TextWrapped = true
+
+    local btn2x = Instance.new("TextButton", Frame)
     btn2x.Size = UDim2.new(0.45, 0, 0, 50)
     btn2x.Position = UDim2.new(0.05, 0, 0.5, -25)
     btn2x.Text = "2x Speed"
-    btn2x.Font = Enum.Font.GothamBold
-    btn2x.TextSize = 18
-    btn2x.BackgroundColor3 = Color3.fromRGB(80, 160, 250)
-    btn2x.Parent = Frame
+    btn2x.BackgroundColor3 = Color3.fromRGB(80,160,250)
 
-    local btn3x = Instance.new("TextButton")
+    local btn3x = Instance.new("TextButton", Frame)
     btn3x.Size = UDim2.new(0.45, 0, 0, 50)
     btn3x.Position = UDim2.new(0.5, 0, 0.5, -25)
     btn3x.Text = "3x Speed"
-    btn3x.Font = Enum.Font.GothamBold
-    btn3x.TextSize = 18
-    btn3x.BackgroundColor3 = Color3.fromRGB(250, 120, 120)
-    btn3x.Parent = Frame
+    btn3x.BackgroundColor3 = Color3.fromRGB(250,120,120)
 
     btn2x.MouseButton1Click:Connect(function()
         ScreenGui:Destroy()
@@ -629,159 +247,11 @@ end
 CheckBtn.MouseButton1Click:Connect(function()
     if TextBox.Text == "HELLROOT" then
         Label.Text = "Key Accepted!"
-        Label.TextColor3 = Color3.fromRGB(0, 255, 0)
+        Label.TextColor3 = Color3.fromRGB(0,255,0)
         task.delay(1, showSpeedMenu)
     else
         TextBox.Text = ""
         Label.Text = "Invalid Key!"
-        Label.TextColor3 = Color3.fromRGB(255, 0, 0)
+        Label.TextColor3 = Color3.fromRGB(255,0,0)
     end
 end)
-
---========================================================--
---=== GAME SCRIPTS (Your full 2x and 3x code) ===--
---========================================================--
-
-function load2xScript()
-    warn("[System] Loaded 2x Speed Script")
-
-    local difficulty = "dif_impossible"
-    local placements = {
-        {
-            time = 23, unit = "unit_lawnmower", slot = "1",
-            data = {Valid=true,PathIndex=3,Position=Vector3.new(-843.87384,62.1803055,-123.052032),
-                DistanceAlongPath=248.00653076171875,
-                CF=CFrame.new(-843.87384,62.1803055,-123.052032,-0,0,1,0,1,-0,-1,0,-0),
-                Rotation=180}
-        },
-        {
-            time = 45, unit = "unit_rafflesia", slot = "2",
-            data = {Valid=true,PathIndex=3,Position=Vector3.new(-842.381287,62.1803055,-162.012131),
-                DistanceAlongPath=180.5395965576172,
-                CF=CFrame.new(-842.381287,62.1803055,-162.012131,1,0,-0,-0,1,-0,-0,0,1),
-                Rotation=180}
-        },
-        {
-            time = 83, unit = "unit_rafflesia", slot = "2",
-            data = {Valid=true,PathIndex=3,Position=Vector3.new(-842.381287,62.1803055,-164.507538),
-                DistanceAlongPath=178.044189453125,
-                CF=CFrame.new(-842.381287,62.1803055,-164.507538,1,0,-0,-0,1,-0,-0,0,1),
-                Rotation=180}
-        },
-        {
-            time = 108, unit = "unit_rafflesia", slot = "2",
-            data = {Valid=true,PathIndex=2,Position=Vector3.new(-864.724426,62.1803055,-199.052032),
-                DistanceAlongPath=100.65655517578125,
-                CF=CFrame.new(-864.724426,62.1803055,-199.052032,-0,0,1,0,1,-0,-1,0,-0),
-                Rotation=180}
-        }
-    }
-
-    local function placeUnit(unitName, slot, data)
-        local hotbar = plr.PlayerGui.BackpackGui.Backpack.Hotbar
-        local slotBtn = hotbar:FindFirstChild(slot)
-        if slotBtn then
-            warn("[Placing] " .. unitName .. " from Slot " .. slot .. " at " .. os.clock() .. "s")
-            remotes.PlaceUnit:InvokeServer(unitName, data)
-        else
-            warn("[Error] Slot " .. slot .. " not found")
-        end
-    end
-
-    function startGame()
-        remotes.PlaceDifficultyVote:InvokeServer(difficulty)
-        warn("[Game] Voted difficulty: " .. difficulty)
-
-        task.delay(7.5, function()
-            for _, p in ipairs(placements) do
-                task.delay(p.time, function()
-                    placeUnit(p.unit, p.slot, p.data)
-                end)
-            end
-        end)
-    end
-
-    task.spawn(function()
-        while true do
-            task.wait(9)
-            remotes.RestartGame:InvokeServer()
-        end
-    end)
-
-    while true do
-        startGame()
-        task.wait(205.5)
-    end
-end
-
-function load3xScript()
-    warn("[System] Loaded 3x Speed Script")
-
-    local difficulty = "dif_impossible"
-    local placements = {
-        {
-            time = 19, unit = "unit_lawnmower", slot = "1",
-            data = {Valid=true,PathIndex=3,Position=Vector3.new(-843.87384,62.1803055,-123.052032),
-                DistanceAlongPath=248.00653076171875,
-                CF=CFrame.new(-843.87384,62.1803055,-123.052032,-0,0,1,0,1,-0,-1,0,-0),
-                Rotation=180}
-        },
-        {
-            time = 30, unit = "unit_rafflesia", slot = "2",
-            data = {Valid=true,PathIndex=3,Position=Vector3.new(-842.381287,62.1803055,-162.012131),
-                DistanceAlongPath=180.5395965576172,
-                CF=CFrame.new(-842.381287,62.1803055,-162.012131,1,0,-0,-0,1,-0,-0,0,1),
-                Rotation=180}
-        },
-        {
-            time = 55, unit = "unit_rafflesia", slot = "2",
-            data = {Valid=true,PathIndex=3,Position=Vector3.new(-842.381287,62.1803055,-164.507538),
-                DistanceAlongPath=178.044189453125,
-                CF=CFrame.new(-842.381287,62.1803055,-164.507538,1,0,-0,-0,1,-0,-0,0,1),
-                Rotation=180}
-        },
-        {
-            time = 75, unit = "unit_rafflesia", slot = "2",
-            data = {Valid=true,PathIndex=2,Position=Vector3.new(-864.724426,62.1803055,-199.052032),
-                DistanceAlongPath=100.65655517578125,
-                CF=CFrame.new(-864.724426,62.1803055,-199.052032,-0,0,1,0,1,-0,-1,0,-0),
-                Rotation=180}
-        }
-    }
-
-    local function placeUnit(unitName, slot, data)
-        local hotbar = plr.PlayerGui.BackpackGui.Backpack.Hotbar
-        local slotBtn = hotbar:FindFirstChild(slot)
-        if slotBtn then
-            warn("[Placing] " .. unitName .. " from Slot " .. slot)
-            remotes.PlaceUnit:InvokeServer(unitName, data)
-        else
-            warn("[Error] Slot " .. slot .. " not found")
-        end
-    end
-
-    function startGame()
-        remotes.PlaceDifficultyVote:InvokeServer(difficulty)
-        warn("[Game] Voted difficulty: " .. difficulty)
-
-        task.delay(5, function()
-            for _, p in ipairs(placements) do
-                task.delay(p.time, function()
-                    placeUnit(p.unit, p.slot, p.data)
-                end)
-            end
-        end)
-    end
-
-    task.spawn(function()
-        while true do
-            task.wait(6)
-            remotes.RestartGame:InvokeServer()
-        end
-    end)
-
-    while true do
-        startGame()
-        task.wait(137)
-    end
-end
