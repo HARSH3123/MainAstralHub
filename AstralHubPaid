@@ -45,6 +45,11 @@ local whitelist = {
     ["YaysRagna"] = true,
     ["Tien_Fram"] = true,
     ["tindeptraigem7"] = true,
+    ["tindeptraigem8"] = true,
+    ["tindeptraigem9"] = true,
+    ["tindeptraigem11"] = true,
+    ["tindeptraigem12"] = true,
+    ["tindeptraigem13"] = true
 }
 
 if not whitelist[plr.Name] then
