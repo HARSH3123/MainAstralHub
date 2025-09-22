@@ -59,7 +59,8 @@ local whitelist = {
     ["bebekoyen1"] = true,
     ["adoptmekofetu1"] = true,
     ["adoptmekonfetu2"] = true,
-    ["adoptmekonfetu4"] = true
+    ["adoptmekonfetu4"] = true,
+    ["VtZxNoWsuJU"] = true
     
 }
 
