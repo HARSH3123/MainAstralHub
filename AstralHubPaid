@@ -236,7 +236,7 @@ function load3xScript()
 
     while true do
         startGame()
-        task.wait(120)
+        task.wait(128)
         remotes.RestartGame:InvokeServer()
     end
 end
