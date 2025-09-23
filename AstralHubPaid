@@ -69,7 +69,8 @@ local whitelist = {
     ["Vasika2282"] = true,
     ["Dark_20981"] = true,
     ["somerandomguy13424"] = true,
-    ["king_izen1"] = true
+    ["king_izen1"] = true,
+    ["Llamacanspit1"] = true
     
 }
 
