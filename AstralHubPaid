@@ -65,7 +65,8 @@ local whitelist = {
     ["natuskol1"] = true,
     ["0Rusian069"] = true,
     ["1Rusian069"] = true,
-    ["ITSMEHARSH132"] = true
+    ["ITSMEHARSH132"] = true,
+    ["vasika2282"] = true
     
 }
 
