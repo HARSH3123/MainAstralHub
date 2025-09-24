@@ -72,7 +72,8 @@ local whitelist = {
     ["king_izen1"] = true,
     ["Llamacanspit1"] = true,
     ["progemes464235"] = true,
-    ["justcr15"] = true
+    ["justcr15"] = true,
+    ["tisendubai"] = true
     
 }
 
