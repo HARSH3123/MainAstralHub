@@ -83,7 +83,8 @@ local whitelist = {
     ["stickdef20"] = true,
     ["Plsloger1"] = true,
     ["Plsloger2"] = true,
-    ["rip_noob127324"] = true
+    ["rip_noob127324"] = true,
+    ["seqayyy"] = true
     
 }
 
