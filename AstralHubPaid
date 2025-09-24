@@ -87,7 +87,12 @@ local whitelist = {
     ["seqayyy"] = true,
     ["karasenokmaks"] = true,
     ["Arman174428"] = true,
-    ["Gill_k786"] = true
+    ["Gill_k786"] = true,
+    ["tuanhuync12"] = true,
+    ["tokuda35196"] = true,
+    ["yamatehaha655"] = true,
+    ["playerVn408"] = true
+   
     
 }
 
