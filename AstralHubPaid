@@ -85,7 +85,8 @@ local whitelist = {
     ["Plsloger2"] = true,
     ["rip_noob127324"] = true,
     ["seqayyy"] = true,
-    ["karasenokmaks"] = true
+    ["karasenokmaks"] = true,
+    ["Arman174428"] = true
     
 }
 
