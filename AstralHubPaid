@@ -78,7 +78,9 @@ local whitelist = {
     ["stickdef17"] = true,
     ["stickdef12"] = true,
     ["stickdef11"] = true,
-    ["loveking292"] = true
+    ["loveking292"] = true,
+    ["stickdef19"] = true,
+    ["stickdef20"] = true
     
 }
 
