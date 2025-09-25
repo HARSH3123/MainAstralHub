@@ -101,7 +101,8 @@ local whitelist = {
     ["skiplegday365"] = true,
     ["gbqp7o"] = true,
     ["KenNguV"] = true,
-    ["nxuflux112"] = true
+    ["nxuflux112"] = true,
+    ["chijioke06"] = true
    
     
 }
