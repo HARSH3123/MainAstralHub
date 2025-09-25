@@ -104,7 +104,8 @@ local whitelist = {
     ["nxuflux112"] = true,
     ["chijioke06"] = true,
     ["iyad3049"] = true,
-    ["hcnsigman"] = true
+    ["hcnsigman"] = true,
+    ["stickdef21"] = true
    
     
 }
