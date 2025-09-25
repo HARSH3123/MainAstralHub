@@ -98,7 +98,8 @@ local whitelist = {
     ["mamabinbolo1"] = true,
     ["2Rusian069"] = true,
     ["TinMotter76MA"] = true,
-    ["skiplegday365"] = true
+    ["skiplegday365"] = true,
+    ["gbqp7o"] = true
    
     
 }
