@@ -103,7 +103,8 @@ local whitelist = {
     ["KenNguV"] = true,
     ["nxuflux112"] = true,
     ["chijioke06"] = true,
-    ["iyad3049"] = true
+    ["iyad3049"] = true,
+    ["hcnsigman"] = true
    
     
 }
