@@ -100,7 +100,8 @@ local whitelist = {
     ["TinMotter76MA"] = true,
     ["skiplegday365"] = true,
     ["gbqp7o"] = true,
-    ["KenNguV"] = true
+    ["KenNguV"] = true,
+    ["nxuflux112"] = true
    
     
 }
