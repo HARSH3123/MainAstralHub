@@ -118,7 +118,7 @@ local whitelist = {
     ["3Rusian069"] = true,
     ["4Rusian069"] = true,
     ["BADRULGGGGG8"] = true,
-
+{
 if not whitelist[plr.Name] then
     plr:Kick("You are not whitelisted to use this script pls contact owner at discord to buy script and get whitelist.")
     return
