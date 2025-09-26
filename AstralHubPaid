@@ -111,7 +111,7 @@ local whitelist = {
     ["ryle_gwapo123456"] = true,
     ["cot8q"] = true,
     ["rip_tisod"] = true,
-    ["dibutcoutua2"] = true,
+    ["dibutcoutua2"] = true
    
     
 }
