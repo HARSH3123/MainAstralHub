@@ -108,7 +108,8 @@ local whitelist = {
     ["stickdef21"] = true,
     ["stickdef21"] = true,
     ["aaronxac"] = true,
-    ["ryle_gwapo123456"] = true
+    ["ryle_gwapo123456"] = true,
+    ["cot8q"] = true
    
     
 }
