@@ -72,7 +72,7 @@ local whitelist = {
     ["king_izen1"] = true,
     ["Llamacanspit1"] = true,
     ["progemes464235"] = true,
-
+    ["cloudyanse"] = true,
     ["tisendubai"] = true,
     ["stickdef18"] = true,
     ["stickdef17"] = true,
