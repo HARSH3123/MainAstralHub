@@ -120,7 +120,8 @@ local whitelist = {
     ["BADRULGGGGG8"] = true,
     ["Qayy_544"] = true,
     ["saeepe"] = true,
-    ["ilikeroblox101017"] = true
+    ["ilikeroblox101017"] = true,
+    ["Ry0uo8"] = true
 }
 
 if not whitelist[plr.Name] then
