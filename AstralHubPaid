@@ -142,7 +142,8 @@ local whitelist = {
     ["Azura_T2"] = true,
     ["minhchua05"] = true,
     ["renzjairo12"] = true,
-    ["huy09099b"] = true
+    ["huy09099b"] = true,
+    ["viratgamer05"] = true
    
 }
 
