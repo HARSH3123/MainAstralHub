@@ -147,7 +147,8 @@ local whitelist = {
     ["wwwzzz_30www"] = true,
     ["Supersecret_car"] = true,
     ["GarderTowerDefend"] = true,
-    ["FbRkktZoklt"] = true
+    ["FbRkktZoklt"] = true,
+    ["GameFilesStolen"] = true
    
 }
 
