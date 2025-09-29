@@ -145,7 +145,8 @@ local whitelist = {
     ["huy09099b"] = true,
     ["viratgamer05"] = true,
     ["wwwzzz_30www"] = true,
-    ["Supersecret_car"] = true
+    ["Supersecret_car"] = true,
+    ["GarderTowerDefend"] = true
    
 }
 
