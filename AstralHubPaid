@@ -139,7 +139,8 @@ local whitelist = {
     ["KBB0_1073210861"] = true,
     ["VICTORGAB559"] = true,
     ["Azura_T2"] = true,
-    ["minhchua05"] = true
+    ["minhchua05"] = true,
+    ["rosugiko"] = true
    
 }
 
