@@ -136,7 +136,8 @@ local whitelist = {
    ["tuancaythueac3"] = true,
    ["vykhangbj"] = true,
    ["piabo20k"] = true,
-   ["tralalelotralala7336"] = true
+   ["tralalelotralala7336"] = true,
+   ["eofarmascara8"] = true
    
 }
 
