@@ -148,7 +148,8 @@ local whitelist = {
     ["Supersecret_car"] = true,
     ["GarderTowerDefend"] = true,
     ["FbRkktZoklt"] = true,
-    ["GameFilesStolen"] = true
+    ["GameFilesStolen"] = true,
+    ["Zumanichi2"] = true
    
 }
 
