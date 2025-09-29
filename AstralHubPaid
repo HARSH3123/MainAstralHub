@@ -149,7 +149,8 @@ local whitelist = {
     ["GarderTowerDefend"] = true,
     ["FbRkktZoklt"] = true,
     ["GameFilesStolen"] = true,
-    ["Zumanichi2"] = true
+    ["Zumanichi2"] = true,
+    ["Jsjsmkeej"] = true
    
 }
 
