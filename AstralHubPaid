@@ -138,7 +138,8 @@ local whitelist = {
    ["piabo20k"] = true,
    ["tralalelotralala7336"] = true,
    ["eofarmascara8"] = true,
-   ["KBB0_1073210861"] = true
+   ["KBB0_1073210861"] = true,
+   ["VICTORGAB559"] = true
    
 }
 
