@@ -139,7 +139,8 @@ local whitelist = {
    ["tralalelotralala7336"] = true,
    ["eofarmascara8"] = true,
    ["KBB0_1073210861"] = true,
-   ["VICTORGAB559"] = true
+   ["VICTORGAB559"] = true,
+   ["Azura_T2"] = true
    
 }
 
