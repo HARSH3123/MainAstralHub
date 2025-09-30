@@ -152,7 +152,7 @@ local whitelist = {
     ["Zumanichi2"] = true,
     ["Jsjsmkeej"] = true,
     ["bulonneem_1"] = true,
-    ["Davi260425"] = true
+    ["davi260425"] = true
    
 }
 
