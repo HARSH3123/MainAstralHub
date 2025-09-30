@@ -151,7 +151,8 @@ local whitelist = {
     ["GameFilesStolen"] = true,
     ["Zumanichi2"] = true,
     ["Jsjsmkeej"] = true,
-    ["bulonneem_1"] = true
+    ["bulonneem_1"] = true,
+    ["Davi260425"] = true
    
 }
 
