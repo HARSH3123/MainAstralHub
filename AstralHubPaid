@@ -50,13 +50,13 @@ local whitelist = {
     ["Nxuflux112"] = true,
     ["xHriKx"] = true,
     ["ilefthimformilk"] = true,
+    ["ilefthimforthemilk"] = true,
     ["cot8q"] = true,
     ["Supersecret_car"] = true,
     ["tuancaythueac3"] = true,
     ["ToxicM1817"] = true,
     ["huy09099b"] = true,
     ["lelelelel2308"] = true,
-    ["Domdemdim"] = true,
     ["Lonewolfgameing"] = true,
     ["udqawiud"] = true,
     ["KenNguV"] = true,
@@ -68,12 +68,16 @@ local whitelist = {
     ["hunghai441"] = true,
     ["jetman_025"] = true,
     ["Hdhjsnsjzvzj"] = true,
+    ["Hdhjsnsnjzvzj"] = true,
     ["pBGhMiV7"] = true,
     ["ryle_gwapo123456"] = true,
-    ["ilefthimforthemilk"] = true,
     ["4Rusian069"] = true,
-    ["3Rusian069"] = true
-    
+    ["3Rusian069"] = true,
+    ["rip_tisod"] = true,
+    ["tralalelotralala7336"] = true,
+    ["minchua05"] = true,
+    ["BebyMyloo"] = true,
+    ["Arman174428"] = true
 }
 
 if not whitelist[plr.Name] then
