@@ -69,7 +69,7 @@ local whitelist = {
     ["jetman_025"] = true,
     ["Hdhjsnsjzvzj"] = true,
     ["pBGhMiV7"] = true,
-    ["Ryle_gwapo123456"] = true,
+    ["ryle_gwapo123456"] = true,
     ["ilefthimforthemilk"] = true
     
 }
